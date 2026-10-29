@@ -62,4 +62,4 @@ Note: browsers block sound until the visitor interacts. The site relies on the t
 
 ## Packet text suggestions
 
-"SCAN TO CLAIM RM100" / "100% LEGIT (TRUST ME BRO)". Keep the design clearly fictional — don't imitate real banknotes or real payment-app branding.
+"SCAN TO CLAIM RM10" (or any small amount; the page randomly shows RM2, RM5 or RM10) / "100% LEGIT (TRUST ME BRO)". Keep the design clearly fictional — don't imitate real banknotes or real payment-app branding.

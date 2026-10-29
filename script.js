@@ -100,6 +100,11 @@
 
   var gate = document.getElementById('gate');
   var reveal = document.getElementById('reveal');
+  // Random small amount, shown on the gate and reused in the roast line.
+  var amts = [2, 5, 10];
+  var amt = amts[Math.floor(Math.random() * amts.length)];
+  document.getElementById('gate-amt').textContent = 'RM ' + amt + '.00';
+
   var goBtn = document.getElementById('go');
   var going = false;
 
@@ -123,11 +128,11 @@
 
   function showReveal() {
     var lines = [
-      'RM100? AKU INTERN JE BRO 💀',
+      'RM' + amt + '? AKU INTERN JE BRO 💀',
       'DOMPET KOSONG BRO 💀',
       'KENA PRANK! 🎃',
       'DUIT? MIMPI JE BRO 😹',
-      'RM100 WHERE BRO? KENA SCAM!'
+      'RM' + amt + ' WHERE BRO? KENA SCAM!'
     ];
     document.querySelector('.scam').textContent = lines[Math.floor(Math.random() * lines.length)];
     gate.hidden = true;

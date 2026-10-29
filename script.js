@@ -2,12 +2,10 @@
   'use strict';
 
   var audio = document.getElementById('laugh');
-  var playBtn = document.getElementById('play');
-  var stopBtn = document.getElementById('stop');
   var cat = document.getElementById('cat');
   var catMissing = document.getElementById('cat-missing');
 
-  var PLAY_LABEL = '🔊 PLAY LAUGH AGAIN';
+  var muteBtn = document.getElementById('mute');
   var audioBroken = false;
 
   /* ---- Image: fall back to .jpg, then to an emoji placeholder ---- */
@@ -22,50 +20,44 @@
     }
   });
 
-  /* ---- Audio ---- */
-  function showStop(on) { stopBtn.hidden = !on; }
+  /* ---- Audio (looping; one element so nothing overlaps) ---- */
+  function setMuted(m) {
+    audio.muted = m;
+    muteBtn.textContent = m ? '🔇' : '🔊';
+    muteBtn.setAttribute('aria-pressed', m ? 'true' : 'false');
+    muteBtn.setAttribute('aria-label', m ? 'Unmute the laugh' : 'Mute the laugh');
+  }
 
-  function setPlaying(on) {
-    showStop(on);
-    playBtn.textContent = on ? '🔁 REPLAY LAUGH' : PLAY_LABEL;
+  var armed = false;
+  // If the browser refuses to start sound, start it on the next touch/click/key (once).
+  function armRetry() {
+    if (armed) return;
+    armed = true;
+    var evts = ['pointerdown', 'keydown'];
+    function once() {
+      evts.forEach(function (n) { document.removeEventListener(n, once, true); });
+      armed = false;
+      if (!audio.muted) play();
+    }
+    evts.forEach(function (n) { document.addEventListener(n, once, true); });
   }
 
   function play() {
-    if (audioBroken) {
-      playBtn.textContent = '🔇 Sound file missing';
-      return;
-    }
-    // One <audio> element, always restarted from 0: no overlapping instances.
-    audio.pause();
-    audio.currentTime = 0;
+    if (audioBroken) return;
     var p = audio.play();
-    if (p && typeof p.then === 'function') {
-      p.then(function () {
-        playBtn.classList.remove('attention');
-        setPlaying(true);
-      }).catch(function () {
-        // Autoplay blocked (or interrupted): leave the button visible and wait for a tap.
-        if (audioBroken) return;
-        setPlaying(false);
-        playBtn.classList.add('attention');
-      });
-    }
+    if (p && typeof p.catch === 'function') p.catch(function () { if (!audioBroken) armRetry(); });
   }
 
-  function stop() {
-    audio.pause();
-    audio.currentTime = 0;
-    setPlaying(false);
-  }
-
-  audio.addEventListener('ended', function () { setPlaying(false); });
   audio.addEventListener('error', function () {
     audioBroken = true;
-    playBtn.textContent = '🔇 Sound file missing';
+    muteBtn.hidden = true;
   });
 
-  playBtn.addEventListener('click', play);
-  stopBtn.addEventListener('click', stop);
+  muteBtn.addEventListener('click', function () {
+    var m = !audio.muted;
+    setMuted(m);
+    if (!m) play();
+  });
 
   // The reveal starts from the visitor's tap on the gate button, which is a
   // genuine user gesture, so the browser allows the laugh to play.
@@ -137,6 +129,8 @@
     document.querySelector('.scam').textContent = lines[Math.floor(Math.random() * lines.length)];
     gate.hidden = true;
     reveal.hidden = false;
+    document.getElementById('aware').hidden = false;
+    if (!audioBroken) muteBtn.hidden = false;
     document.title = 'HAHAHAHA! You Really Thought?';
     play();
     burst();

@@ -15,7 +15,7 @@ assets/laughing-cat.png   <- your supplied laughing cat image (.jpg/.jpeg also w
 assets/laugh.mp3          <- a laugh sound effect you have the right to use
 ```
 
-If either is missing, the page shows a 😹 placeholder and a "Sound file missing" button. Use a royalty-free / licensed sound (e.g. a CC0 clip from freesound.org or pixabay.com/sound-effects). The current clip is trimmed to 3 s, limited to peak 0 dB and under 50 KB.
+If either is missing, the page shows a 😹 placeholder (cat) or no mute button (sound). Use a royalty-free / licensed sound (e.g. a CC0 clip from freesound.org or pixabay.com/sound-effects). The current clip is trimmed to 3 s, limited to peak 0 dB and under 50 KB.
 
 ## 2. Run locally
 
@@ -54,11 +54,11 @@ Test on your phone while on the same Wi-Fi via `http://<your-PC-LAN-IP>:8000` �
 
 - Scan the *printed* code (not the screen) with the camera app on both iPhone and Android.
 - Confirm the URL shown is your public https address, not localhost.
-- Check: the fake wallet screen shows, tapping the button reveals the cat without scrolling, the laugh plays, REPLAY works and STOP works.
+- Check: the fake wallet screen shows, tapping the button reveals the cat without scrolling, the laugh plays on a loop, and the 🔊 button in the top-right mutes and unmutes it.
 - Print the QR at least 3 cm wide on a matte, light packet with a white border, and test it in dim light.
 - Try on mobile data (not just Wi-Fi) to confirm it's truly public.
 
-Note: browsers block sound until the visitor interacts. The site relies on the tap on the gate button, so the laugh normally plays straight away. If it doesn't, the replay button still works.
+Note: browsers block sound until the visitor interacts. The site relies on the tap on the gate button, so the laugh normally plays straight away. The laugh loops; the mute button is the only sound control. If a browser still refuses, the next tap anywhere starts it.
 
 ## Packet text suggestions
 

@@ -43,25 +43,31 @@
     <p class="haha reveal r2">HAHAHAHAHAHAHAHA!</p>
     <p class="scam reveal r3">AKU INTERN JE BRO 💀</p>
 
-    <div class="controls reveal r3">
-      <button id="play" class="btn btn-main" type="button" aria-label="Play the laugh again">🔊 PLAY LAUGH AGAIN</button>
-      <button id="stop" class="btn btn-alt" type="button" aria-label="Stop and mute the laugh" hidden>🔇 STOP</button>
-    </div>
-
     <p class="foot reveal r3">Scan boleh. Duit tak boleh.</p>
-
-    <aside class="aware reveal r3" aria-labelledby="aware-title">
-      <h2 id="aware-title">⚠️ Bro scanned a random QR for free money 💀 (skill issue)</h2>
-      <ul>
-        <li>"Trust me bro" + free money = SCAM. Always. No cap.</li>
-        <li>Jangan masukkan PIN, OTP atau butiran bank / e-wallet di laman yang dibuka dari QR. Itu bukan sigma move.</li>
-        <li>Check URL dulu. Kalau nampak sus, memang sus. Install app dari App Store / Google Play je.</li>
-        <li>Kali ni cuma kucing yang gelak. Kalau scam betul, call NSRC <a href="tel:997">997</a> cepat-cepat.</li>
-      </ul>
-    </aside>
+    <a class="more reveal r3" href="#aware">⬇ REAL TALK ⬇</a>
   </main>
 
-  <audio id="laugh" src="assets/laugh.mp3" preload="auto"></audio>
+  <button id="mute" class="mute" type="button" aria-label="Mute the laugh" aria-pressed="false" hidden>🔊</button>
+
+  <aside id="aware" class="aware" aria-labelledby="aware-title" hidden>
+    <div class="aware-in">
+      <p class="aware-tag">⚠️ PSA • NOT A DRILL</p>
+      <h2 id="aware-title">KALI NI KUCING YANG GELAK.<br><span>LAIN KALI, SCAMMER.</span></h2>
+      <p class="aware-sub">Bro scanned a random QR for free money 💀 Skill issue. Don't let it be real next time.</p>
+
+      <ul class="tiles">
+        <li class="tile t1"><span class="ico" aria-hidden="true">🎁</span><b>FREE MONEY?</b><small>Tak ada duit percuma. Kalau terlalu sedap, memang scam. No cap.</small></li>
+        <li class="tile t2"><span class="ico" aria-hidden="true">🔗</span><b>CHECK THE LINK</b><small>Tengok URL dulu. Nampak sus? Tutup terus.</small></li>
+        <li class="tile t3"><span class="ico" aria-hidden="true">🔐</span><b>NEVER SHARE PIN / OTP</b><small>Bank &amp; e-wallet tak pernah minta PIN atau OTP. Itu bukan sigma move.</small></li>
+        <li class="tile t4"><span class="ico" aria-hidden="true">📲</span><b>APPS FROM STORE ONLY</b><small>App Store / Google Play je. Bukan dari link atau QR.</small></li>
+      </ul>
+
+      <a class="sos" href="tel:997">📞 KENA SCAM? CALL NSRC 997</a>
+      <p class="aware-foot">Prank je. Duit pun takde. Stay safe, bro. 🎃</p>
+    </div>
+  </aside>
+
+  <audio id="laugh" src="assets/laugh.mp3" preload="auto" loop></audio>
   <script src="script.js"></script>
 </body>
 </html>

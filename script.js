@@ -97,6 +97,27 @@
   var amt = amts[Math.floor(Math.random() * amts.length)];
   document.getElementById('gate-amt').textContent = 'RM ' + amt + '.00';
 
+  // Scroll-in animation for the awareness section (progressive: content is visible without JS/IO).
+  function animateAware() {
+    var box = document.getElementById('aware');
+    var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce || !('IntersectionObserver' in window)) return;
+    var items = box.querySelectorAll('.aware-tag, h2, .aware-sub, .tile, .sos, .aware-foot');
+    box.classList.add('anim-ready');
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) {
+          e.target.classList.add('in');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.2 });
+    items.forEach(function (el, i) {
+      el.style.setProperty('--d', (el.classList.contains('tile') ? (i % 2) * 0.12 : 0) + 's');
+      io.observe(el);
+    });
+  }
+
   var goBtn = document.getElementById('go');
   var going = false;
 
@@ -130,6 +151,7 @@
     gate.hidden = true;
     reveal.hidden = false;
     document.getElementById('aware').hidden = false;
+    animateAware();
     if (!audioBroken) muteBtn.hidden = false;
     document.title = 'HAHAHAHA! You Really Thought?';
     play();

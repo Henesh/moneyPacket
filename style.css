@@ -376,3 +376,39 @@ html { scroll-behavior: smooth; }
   html { scroll-behavior: auto; }
   .more { animation: none; }
 }
+
+/* awareness scroll-in animation */
+.anim-ready .aware-tag, .anim-ready h2, .anim-ready .aware-sub,
+.anim-ready .tile, .anim-ready .sos, .anim-ready .aware-foot {
+  opacity: 0;
+  transition: opacity 0.4s ease var(--d, 0s), transform 0.5s cubic-bezier(.2, 1.5, .4, 1) var(--d, 0s);
+}
+.anim-ready .aware-tag { transform: translateY(-20px) rotate(-8deg) scale(0.8); }
+.anim-ready h2        { transform: translateY(24px) scale(0.95); }
+.anim-ready .aware-sub, .anim-ready .aware-foot { transform: translateY(14px); }
+.anim-ready .t1, .anim-ready .t3 { transform: translateX(-60px) rotate(-8deg) scale(0.8); }
+.anim-ready .t2, .anim-ready .t4 { transform: translateX(60px) rotate(8deg) scale(0.8); }
+.anim-ready .sos { transform: scale(0.7); }
+.anim-ready .in { opacity: 1; }
+.anim-ready .aware-tag.in { transform: rotate(-2deg); }
+.anim-ready h2.in, .anim-ready .aware-sub.in, .anim-ready .aware-foot.in { transform: none; }
+.anim-ready .t1.in { transform: rotate(-1.5deg); }
+.anim-ready .t2.in { transform: rotate(1.2deg); }
+.anim-ready .t3.in { transform: rotate(1deg); }
+.anim-ready .t4.in { transform: rotate(-1.2deg); }
+.anim-ready .sos.in { transform: none; animation: sos-pulse 1.4s ease-in-out 0.6s infinite; }
+
+.aware .ico { display: inline-block; animation: ico-bob 2.2s ease-in-out infinite; }
+.t2 .ico { animation-delay: 0.3s; }
+.t3 .ico { animation-delay: 0.6s; }
+.t4 .ico { animation-delay: 0.9s; }
+.aware-tag { animation: tag-wiggle 2.4s ease-in-out infinite; }
+.tile { transition: transform 0.2s; }
+
+@keyframes ico-bob { 0%, 100% { transform: translateY(0) rotate(0); } 50% { transform: translateY(-5px) rotate(6deg); } }
+@keyframes sos-pulse { 0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(229, 32, 46, 0.6); } 50% { transform: scale(1.03); box-shadow: 0 0 0 12px rgba(229, 32, 46, 0); } }
+@keyframes tag-wiggle { 0%, 100% { transform: rotate(-2deg); } 50% { transform: rotate(2deg); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .aware .ico, .aware-tag, .sos { animation: none; }
+}

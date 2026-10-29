@@ -100,8 +100,28 @@
 
   var gate = document.getElementById('gate');
   var reveal = document.getElementById('reveal');
-  document.getElementById('go').addEventListener('click', function () {
-    gate.hidden = true;
+  var goBtn = document.getElementById('go');
+  var going = false;
+
+  function burst() {
+    if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var box = document.createElement('div');
+    box.className = 'rain';
+    box.setAttribute('aria-hidden', 'true');
+    for (var i = 0; i < 14; i++) {
+      var b = document.createElement('span');
+      var ang = (i / 14) * Math.PI * 2;
+      b.className = 'coin';
+      b.textContent = '💸';
+      b.style.setProperty('--dx', Math.cos(ang) * (110 + Math.random() * 90) + 'px');
+      b.style.setProperty('--dy', Math.sin(ang) * (110 + Math.random() * 90) + 'px');
+      box.appendChild(b);
+    }
+    document.body.appendChild(box);
+    setTimeout(function () { box.remove(); }, 1200);
+  }
+
+  function showReveal() {
     var lines = [
       'RM100? AKU INTERN JE BRO 💀',
       'DOMPET KOSONG BRO 💀',
@@ -110,9 +130,24 @@
       'RM100 WHERE BRO? KENA SCAM!'
     ];
     document.querySelector('.scam').textContent = lines[Math.floor(Math.random() * lines.length)];
+    gate.hidden = true;
     reveal.hidden = false;
-    document.title = 'HAHAHAHAHA! You Really Thought?';
+    document.title = 'HAHAHAHA! You Really Thought?';
     play();
+    burst();
     rain();
+  }
+
+  goBtn.addEventListener('click', function () {
+    if (going) return;
+    going = true;
+    goBtn.classList.add('loading');
+    goBtn.textContent = 'Redirecting…';
+    // Unlock audio inside this tap (iOS), then play for real when the cat appears.
+    var u = audio.play();
+    if (u && u.then) {
+      u.then(function () { if (!reveal.hidden) return; audio.pause(); audio.currentTime = 0; }).catch(function () {});
+    }
+    setTimeout(showReveal, 800);
   });
 })();

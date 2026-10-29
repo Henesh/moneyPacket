@@ -169,6 +169,7 @@ html, body {
 @media (prefers-reduced-motion: reduce) {
   .reveal, .btn-main.attention, .cat img, .haha, .gate-btn { animation: none; }
   .rain { display: none; }
+  .gate-btn.loading::before { animation: none; }
   .btn:active { transform: none; }
 }
 
@@ -258,3 +259,28 @@ html, body {
 .aware ul { margin: 0; padding-left: 1.1em; }
 .aware li { margin: 3px 0; }
 .aware a { color: #000; font-weight: 700; }
+
+.gate-btn.loading { animation: none; opacity: 0.85; pointer-events: none; }
+.gate-btn.loading::before {
+  content: "";
+  display: inline-block;
+  width: 1em; height: 1em;
+  margin-right: 0.6em;
+  vertical-align: -0.15em;
+  border: 3px solid rgba(255, 255, 255, 0.4);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+.coin {
+  position: absolute;
+  left: 50%; top: 45%;
+  font-size: 30px;
+  line-height: 1;
+  animation: burst 0.9s ease-out forwards;
+}
+@keyframes burst {
+  from { transform: translate(-50%, -50%) scale(0.4); opacity: 1; }
+  to   { transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))) scale(1.2); opacity: 0; }
+}

@@ -120,7 +120,41 @@ html, body {
   60% { transform: translateX(-5px) rotate(-1deg); }
   80% { transform: translateX(5px) rotate(1deg); }
 }
-.cat img { animation: shake 0.3s ease-in-out 0.3s both; }
+.cat img {
+  animation: shake 0.3s ease-in-out 0.3s both, wobble 1.4s ease-in-out 0.6s infinite;
+  transform-origin: 50% 80%;
+}
+.haha {
+  animation: pop 0.35s cubic-bezier(.2, 1.4, .4, 1) 0.06s both, beat 0.5s ease-in-out 0.5s infinite;
+}
+.gate-btn { animation: gate-pulse 1.6s ease-in-out infinite; }
+
+@keyframes wobble {
+  0%, 100% { transform: rotate(-2deg) scale(1); }
+  50%      { transform: rotate(2deg) scale(1.03); }
+}
+@keyframes beat {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.06); }
+}
+@keyframes gate-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(27, 95, 209, 0.5); }
+  50%      { box-shadow: 0 0 0 10px rgba(27, 95, 209, 0); }
+}
+
+/* emoji rain on reveal */
+.rain { position: fixed; inset: 0; overflow: hidden; pointer-events: none; z-index: 10; }
+.bit {
+  position: absolute;
+  top: -12%;
+  opacity: 0.9;
+  line-height: 1;
+  animation: fall linear forwards;
+  will-change: transform;
+}
+@keyframes fall {
+  to { transform: translateY(125vh) rotate(var(--spin, 360deg)); }
+}
 @keyframes nudge {
   0%, 100% { transform: scale(1); }
   50%      { transform: scale(1.08); }
@@ -133,7 +167,8 @@ html, body {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .reveal, .btn-main.attention, .cat img { animation: none; }
+  .reveal, .btn-main.attention, .cat img, .haha, .gate-btn { animation: none; }
+  .rain { display: none; }
   .btn:active { transform: none; }
 }
 

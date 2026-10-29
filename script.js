@@ -76,6 +76,28 @@
   document.getElementById('gate-ref').textContent =
     String(Math.floor(Math.random() * 1e12)).padStart(12, '0');
 
+  // Short emoji rain (~3.5 s, 16 elements, transform-only). Skipped for reduced motion.
+  function rain() {
+    if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var emo = ['💀', '😹', '💸', '🎃', '🤣', '🤡'];
+    var box = document.createElement('div');
+    box.className = 'rain';
+    box.setAttribute('aria-hidden', 'true');
+    for (var i = 0; i < 16; i++) {
+      var b = document.createElement('span');
+      b.className = 'bit';
+      b.textContent = emo[Math.floor(Math.random() * emo.length)];
+      b.style.left = Math.random() * 96 + '%';
+      b.style.fontSize = 22 + Math.random() * 26 + 'px';
+      b.style.animationDuration = 2 + Math.random() * 1.5 + 's';
+      b.style.animationDelay = Math.random() * 0.9 + 's';
+      b.style.setProperty('--spin', (Math.random() < 0.5 ? -1 : 1) * (180 + Math.random() * 360) + 'deg');
+      box.appendChild(b);
+    }
+    document.body.appendChild(box);
+    setTimeout(function () { box.remove(); }, 4800);
+  }
+
   var gate = document.getElementById('gate');
   var reveal = document.getElementById('reveal');
   document.getElementById('go').addEventListener('click', function () {
@@ -91,5 +113,6 @@
     reveal.hidden = false;
     document.title = 'HAHAHAHAHA! You Really Thought?';
     play();
+    rain();
   });
 })();

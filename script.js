@@ -48,8 +48,24 @@
         if (audioBroken) return;
         setPlaying(false);
         playBtn.classList.add('attention');
+        armFirstTouch();
       });
     }
+  }
+
+  // If autoplay was blocked, play once on the visitor's first touch/click/key anywhere
+  // on the page (a normal user gesture, so browsers allow it). Fires at most once.
+  var armed = false;
+  function armFirstTouch() {
+    if (armed) return;
+    armed = true;
+    var evts = ['pointerdown', 'touchstart', 'keydown'];
+    function once(e) {
+      evts.forEach(function (n) { document.removeEventListener(n, once, true); });
+      if (e.target && e.target.closest && e.target.closest('.controls')) return; // buttons handle themselves
+      play();
+    }
+    evts.forEach(function (n) { document.addEventListener(n, once, true); });
   }
 
   function stop() {

@@ -126,3 +126,47 @@ html, body {
   .reveal, .btn-main.attention { animation: none; }
   .btn:active { transform: none; }
 }
+
+/* ---- fake e-wallet redirect gate (generic, no real brand) ---- */
+.gate {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: linear-gradient(#1b5fd1 0 38%, #f2f5fa 38%);
+  font-family: Arial, Helvetica, sans-serif;
+}
+.gate[hidden], .stage[hidden] { display: none; }
+.gate-card {
+  width: 100%;
+  max-width: 380px;
+  background: #fff;
+  border-radius: 18px;
+  padding: 28px 22px 22px;
+  text-align: center;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.18);
+}
+.gate-logo { font-size: 3rem; line-height: 1; }
+.gate-card h2 { margin: 12px 0 6px; font-size: 1.35rem; color: #111; }
+.gate-sub { margin: 0 0 14px; color: #555; font-size: 0.95rem; }
+.gate-amt { margin: 0 0 18px; font-size: 2.2rem; font-weight: 800; color: #1b5fd1; }
+.gate-btn {
+  width: 100%;
+  min-height: 52px;
+  padding: 12px 16px;
+  font: inherit;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #fff;
+  background: #1b5fd1;
+  border: 0;
+  border-radius: 12px;
+  cursor: pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+.gate-btn:active { transform: scale(0.98); }
+.gate-btn:focus-visible { outline: 4px solid #ffb400; outline-offset: 3px; }
+.gate-note { margin: 12px 0 0; color: #888; font-size: 0.8rem; }

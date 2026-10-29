@@ -48,24 +48,8 @@
         if (audioBroken) return;
         setPlaying(false);
         playBtn.classList.add('attention');
-        armFirstTouch();
       });
     }
-  }
-
-  // If autoplay was blocked, play once on the visitor's first touch/click/key anywhere
-  // on the page (a normal user gesture, so browsers allow it). Fires at most once.
-  var armed = false;
-  function armFirstTouch() {
-    if (armed) return;
-    armed = true;
-    var evts = ['pointerdown', 'touchstart', 'keydown'];
-    function once(e) {
-      evts.forEach(function (n) { document.removeEventListener(n, once, true); });
-      if (e.target && e.target.closest && e.target.closest('.controls')) return; // buttons handle themselves
-      play();
-    }
-    evts.forEach(function (n) { document.addEventListener(n, once, true); });
   }
 
   function stop() {
@@ -83,6 +67,14 @@
   playBtn.addEventListener('click', play);
   stopBtn.addEventListener('click', stop);
 
-  // Single autoplay attempt on load; never retried automatically.
-  play();
+  // The reveal starts from the visitor's tap on the gate button, which is a
+  // genuine user gesture, so the browser allows the laugh to play.
+  var gate = document.getElementById('gate');
+  var reveal = document.getElementById('reveal');
+  document.getElementById('go').addEventListener('click', function () {
+    gate.hidden = true;
+    reveal.hidden = false;
+    document.title = 'HAHAHAHAHA! You Really Thought?';
+    play();
+  });
 })();

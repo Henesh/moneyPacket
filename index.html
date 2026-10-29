@@ -3,16 +3,27 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>HAHAHAHAHA! You Really Thought?</title>
+  <title>Opening e-wallet…</title>
   <meta name="description" content="Scan boleh. Duit tak boleh.">
   <meta name="robots" content="noindex">
-  <meta name="theme-color" content="#ffffff">
+  <meta name="theme-color" content="#1b5fd1">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%98%B9%3C/text%3E%3C/svg%3E">
   <link rel="preload" as="image" href="assets/laughing-cat.png">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <main class="stage">
+  <section id="gate" class="gate">
+    <div class="gate-card">
+      <div class="gate-logo" aria-hidden="true">💳</div>
+      <h2>Angpao RM100 received 🎉</h2>
+      <p class="gate-sub">Open your e-wallet app to claim your money packet.</p>
+      <p class="gate-amt">RM 100.00</p>
+      <button id="go" class="gate-btn" type="button">Click here to redirect to the app</button>
+      <p class="gate-note">Redirecting to your e-wallet app…</p>
+    </div>
+  </section>
+
+  <main id="reveal" class="stage" hidden>
     <h1 class="top reveal r2">YOU REALLY THOUGHT? 💀</h1>
 
     <figure class="cat reveal r1">

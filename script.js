@@ -69,6 +69,13 @@
 
   // The reveal starts from the visitor's tap on the gate button, which is a
   // genuine user gesture, so the browser allows the laugh to play.
+  var d = new Date();
+  var pad = function (n) { return (n < 10 ? '0' : '') + n; };
+  document.getElementById('gate-date').textContent =
+    pad(d.getDate()) + '/' + pad(d.getMonth() + 1) + '/' + d.getFullYear() + ' ' + pad(d.getHours()) + ':' + pad(d.getMinutes());
+  document.getElementById('gate-ref').textContent =
+    String(Math.floor(Math.random() * 1e12)).padStart(12, '0');
+
   var gate = document.getElementById('gate');
   var reveal = document.getElementById('reveal');
   document.getElementById('go').addEventListener('click', function () {

@@ -132,9 +132,11 @@ html, body {
   min-height: 100vh;
   min-height: 100dvh;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  padding: 20px;
+  justify-content: flex-start;
+  gap: 18px;
+  padding: 0 20px 20px;
   background: linear-gradient(#1b5fd1 0 38%, #f2f5fa 38%);
   font-family: Arial, Helvetica, sans-serif;
 }
@@ -170,3 +172,26 @@ html, body {
 .gate-btn:active { transform: scale(0.98); }
 .gate-btn:focus-visible { outline: 4px solid #ffb400; outline-offset: 3px; }
 .gate-note { margin: 12px 0 0; color: #888; font-size: 0.8rem; }
+
+.app-bar {
+  width: calc(100% + 40px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: max(14px, env(safe-area-inset-top)) 20px 14px;
+  color: #fff;
+  font-weight: 700;
+}
+.app-name { font-size: 1.15rem; letter-spacing: 0.02em; }
+.app-secure { font-size: 0.8rem; font-weight: 600; opacity: 0.9; }
+.gate-check {
+  width: 56px; height: 56px; margin: 0 auto;
+  border-radius: 50%; background: #e6f6ec; color: #1a9b4b;
+  font-size: 1.9rem; line-height: 56px; font-weight: 800;
+}
+.gate-amt { margin: 4px 0 14px; }
+.gate-rows { margin: 0 0 18px; padding: 8px 0; border-top: 1px solid #eee; border-bottom: 1px solid #eee; }
+.gate-rows div { display: flex; justify-content: space-between; gap: 12px; padding: 7px 0; font-size: 0.9rem; }
+.gate-rows dt { color: #777; }
+.gate-rows dd { margin: 0; color: #111; font-weight: 600; text-align: right; }
+.gate-rows .ok { color: #d97b00; }

@@ -13,13 +13,22 @@
 </head>
 <body>
   <section id="gate" class="gate">
+    <header class="app-bar">
+      <span class="app-name">e-Wallet</span>
+      <span class="app-secure">🔒 Secure</span>
+    </header>
     <div class="gate-card">
-      <div class="gate-logo" aria-hidden="true">💳</div>
-      <h2>RM100 ready to claim 💸</h2>
-      <p class="gate-sub">Open your e-wallet app to claim your reward.</p>
+      <div class="gate-check" aria-hidden="true">✓</div>
+      <h2>Reward ready to claim</h2>
       <p class="gate-amt">RM 100.00</p>
+      <dl class="gate-rows">
+        <div><dt>From</dt><dd>Money Packet Reward</dd></div>
+        <div><dt>Status</dt><dd class="ok">Pending claim</dd></div>
+        <div><dt>Date</dt><dd id="gate-date">—</dd></div>
+        <div><dt>Ref. no.</dt><dd id="gate-ref">—</dd></div>
+      </dl>
       <button id="go" class="gate-btn" type="button">Click here to redirect to the app</button>
-      <p class="gate-note">Redirecting to your e-wallet app…</p>
+      <p class="gate-note">You will be redirected to your e-wallet app to complete the claim.</p>
     </div>
   </section>
 

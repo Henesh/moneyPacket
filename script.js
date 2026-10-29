@@ -80,6 +80,14 @@
   var reveal = document.getElementById('reveal');
   document.getElementById('go').addEventListener('click', function () {
     gate.hidden = true;
+    var lines = [
+      'RM100? AKU INTERN JE BRO 💀',
+      'DOMPET KOSONG BRO 💀',
+      'KENA PRANK! 🎃',
+      'DUIT? MIMPI JE BRO 😹',
+      'RM100 WHERE BRO? KENA SCAM!'
+    ];
+    document.querySelector('.scam').textContent = lines[Math.floor(Math.random() * lines.length)];
     reveal.hidden = false;
     document.title = 'HAHAHAHAHA! You Really Thought?';
     play();
